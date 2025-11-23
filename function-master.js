@@ -2,40 +2,85 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//  /* global objectValues */
+//     QUnit.test( "objectValues() : Should take an object and return its values in an array", function( assert ) {
+//       var objectOne = {a: "one", b: "two", ponies: "crayons", dingle: "dangle"};
+//       var objectTwo = {c: "three", d: "four", crayons: "ponies", dangle: "dingle"};
+//       assert.deepEqual(objectValues(objectOne), ["one","two","crayons","dangle"]);
+//       assert.deepEqual(objectValues(objectTwo), ["three","four","ponies","dingle"]);
+//     });
+
 function objectValues(object) {
     // code
+    var newArray =(Object.values(object))
+    return newArray  
 } 
 
 //////////////////////////////////////////////////////////////////////
 // Function 2 - Keys to String ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function keysToString(object) {
+// /* global valuesToString */
+//     QUnit.test("valuesToString() : Should take an object and return all its string values in a string each separated with a space", function(assert){
+//       var objectOne = {a: "one", b: "two", ponies: "crayons", something: {}, dingle: "dangle"};
+//       var objectTwo = {c: "three", boolean: false, d: "four", crayons: "ponies", dangle: "dingle"};
+//       assert.equal(valuesToString(objectOne), "one two crayons dangle");
+//       assert.equal(valuesToString(objectTwo), "three four ponies dingle");
+//     });
 
+function keysToString(object) {
+    return Object.keys(object).join(' ')
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// /* global valuesToString */
+//     QUnit.test("valuesToString() : Should take an object and return all its string values in a string each separated with a space", function(assert){
+//       var objectOne = {a: "one", b: "two", ponies: "crayons", something: {}, dingle: "dangle"};
+//       var objectTwo = {c: "three", boolean: false, d: "four", crayons: "ponies", dangle: "dingle"};
+//       assert.equal(valuesToString(objectOne), "one two crayons dangle");
+//       assert.equal(valuesToString(objectTwo), "three four ponies dingle");
+//     });
+
 function valuesToString(object) {
-    
+    return Object.values(object).filter(function(val){
+        return typeof val === 'string'
+    }).join(' ')
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 4 - Array or Object //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// /* global arrayOrObject  */
+//     QUnit.test("arrayOrObject() : Should take one argument and return 'array' if its an array and 'object' if its an object", function(assert){
+//       assert.equal(arrayOrObject({a:"one"}), "object");
+//       assert.equal(arrayOrObject([1,2,{}]), "array");
+//     });
+
 function arrayOrObject(collection) {
-    
+    if (Array.isArray(collection)){
+        return "array"
+    } else {
+        return "object"
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 5 - Capitalize Word //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// /* global capitalizeWord*/
+//     QUnit.test("capitalizeWord() : Should take a string of one word, and return the word with its first letter capitalized", function(assert){
+//       assert.equal(capitalizeWord("greg"), "Greg");
+//       assert.equal(capitalizeWord("pumpkin"), "Pumpkin");
+//       assert.equal(capitalizeWord("quattuordecillion"), "Quattuordecillion");
+//     });
+
 function capitalizeWord(string) {
-    
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,7 +88,7 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    return string.toUpperCase()
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -51,7 +96,7 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+return 'Welcome ' + object.name.charAt(0).toUpperCase() + object.name.slice(1) + '!'
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -59,7 +104,7 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+return object.name.charAt(0).toUpperCase() + object.name.slice(1) +' is a ' + object.species.charAt(0).toUpperCase() + object.species.slice(1)
 }
 
 //////////////////////////////////////////////////////////////////////
