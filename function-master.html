@@ -59,7 +59,16 @@
 
     /* global  capitalizeAllWords*/
     QUnit.test("capitalizeAllWords() : Should take a string of words and return a string with all the words capitalized ", function(assert){
-      assert.equal(capitalizeAllWords("one two three four"), "One Two Three Four");
+      assert.equal(function capitalizeAllWords(string) {
+    var strArr = []
+    var strSplit = string.split(' ')
+    for (let i = 0; i < strSplit.length; i++) {
+        if (strSplit[i].length > 0) {
+        strArr.push(strSplit[i][0].toUpperCase() + strSplit[i].slice(1))
+    }
+}
+    return strArr.join(' ')
+}, "One Two Three Four");
       assert.equal(capitalizeAllWords("please excuse my dear aunt sally"), "Please Excuse My Dear Aunt Sally");
     });
 

@@ -88,8 +88,15 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    return string.toUpperCase()
+    var strArr = []
+    var strSplit = string.split(' ')
+    for (let i = 0; i < strSplit.length; i++) {
+        if (strSplit[i].length > 0) {
+        strArr.push(strSplit[i][0].toUpperCase() + strSplit[i].slice(1))
+    }
 }
+    return strArr.join(' ')
+} // this is correct in codepen
 
 //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
@@ -112,7 +119,7 @@ return object.name.charAt(0).toUpperCase() + object.name.slice(1) +' is a ' + ob
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-if (!object.hasOwnProperty('noises')) {
+if (!object.hasOwnProperty('noises') || object.noises.length === 0) {
     return 'there are no noises'
 } else {
     return object.noises.join(' ')
@@ -149,7 +156,11 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+if (Array.isArray(object.friends)) {
+    return object.friends.includes(name)
+} else {
+    return false
+}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -157,7 +168,15 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+var notFriends = []
+for (let friend of array) {
+    if (friend.name !== name) {
+        if (!friend.friends.includes(name)) {
+            notFriends.push(friend.name)
+        }
+    }
+}
+return notFriends
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -165,7 +184,8 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    object[key] = value
+    return object
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -173,7 +193,9 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+for (let i = 0; i < array.length; i++) {
+    delete object[array[i]]
+}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -181,7 +203,8 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+var removeDups = [...new Set(array)]
+return removeDups
 }
 
 //////////////////////////////////////////////////////////////////////
